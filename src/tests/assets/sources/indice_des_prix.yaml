@@ -1,0 +1,137 @@
+
+name: "Indice des Prix"
+periodicity: year
+schema: "indice_des_prix"
+config:
+  output_format: parquet
+file_paths:
+  2022: "Annuaire Statistique 2022/17. Indice des prix _AS 2022.xlsx"
+  2021: "Annuaire Statistique 2021/17.1 Indice des prix 2021.xlsx"
+  2020: "Annuaire Statistique 2020/17.Indice des prix - S.A 2020.xlsx"
+  2019: "Annuaire Statistique 2019/16.1 Indice des prix 2019.xlsx"
+read_and_write: [2019, 2021]
+datasets:
+- name: "Indice des prix à la production industrielle,énergétique et minière"
+  table_name: "ipp"
+  config:
+    sheet_name: "ipp"
+    historic_periods: 3
+    type: index
+    base_year_cell: "A6"
+    data_cells_range: "A9:E42"
+    columns_cells_range: "A6:E6"
+    dimension_cols_index: [0,4]
+    dimension_cols_rename: ["libelle_fr", "libelle_ar"]
+    merge_strategy: merge_multiline_labels
+  data_ranges:
+    2019:
+      version: 1
+      config: 
+        data_cells_range: "A9:E41"
+    2020:
+      version: 1
+      config:
+        data_cells_range: "A9:E41"
+    2021:
+      version: 2
+      config:
+        dimension_cols_index: [0,3]
+        historic_periods: 2
+    2022:
+      version: 2   
+- name: "Indice des prix à la consommation : Milieu urbain"
+  table_name: "ipc_national"
+  config:
+    sheet_name: "Nat "
+    historic_periods: 3
+    type: index
+    base_year_cell: "A6"
+    data_cells_range: "A9:E67"
+    columns_cells_range: "A6:E6"
+    dimension_cols_index: [0,4]
+    dimension_cols_rename: ["libelle_fr", "libelle_ar"]
+    merge_strategy: merge_multiline_labels
+  data_ranges:
+    2019:
+      version: 1
+      config:
+        data_cells_range: "A9:E65"
+    2020:
+      version: 2
+      config:
+        historic_periods: 2
+        dimension_cols_index: [0,3]
+    2021:
+      version: 2
+    2022: 
+      version: 2
+- name: "Prix moyens de détail observés pour certains produits dans la ville de Casablanca"
+  table_name: "prix_produits_casablanca"
+  config:
+    sheet_name: "t 21"
+    historic_periods: 3
+    type: index
+    data_cells_range: "A9:G59,A74:G122,A138:G173"
+    columns_cells_range: "A7:G7"
+    dimension_cols_index: [0, 1, 5, 6]
+    dimension_cols_rename: ["libelle_fr", "unite_fr", "unite_ar", "libelle_ar"]
+    merge_strategy: merge_categories_and_elements
+    replace_cells: {
+      2019: {
+        "D120":8.1, 
+        "E120":8.11
+      },
+      2021:{
+        "C80":4.35, 
+        "C82":3.65, 
+        "C102":21.18,
+        "C104":32.61
+      },
+    }
+    replace_regex: {
+      '\(\d*\)':''
+    }
+  data_ranges:
+    2019:
+      version: 1
+      config:
+        sheet_name: " t20"
+    2020:
+      version: 1
+    2021:
+      version: 2
+    2022:
+      version: 2
+  versions: 
+    1:
+      config:
+        data_cells_range: "A9:G59,A74:G123,A139:G177"
+- name: "Prix réglementés pour certains produits de tabac"
+  table_name: "prix_tabacs"
+  config:
+    sheet_name: "t 23"
+    historic_periods: 6
+    type: index
+    data_cells_range: "A10:H49"
+    columns_cells_range: "A6:H6"
+    dimension_cols_index: [0, 7]
+    dimension_cols_rename: ["libelle_fr", "libelle_ar"]
+    merge_strategy: merge_categories_and_elements
+  data_ranges:
+    2019:
+      version: 1
+      config:
+        sheet_name: " 22"
+    2020:
+      version: 1
+    2021:
+      version: 2
+    2022:
+      version: 2
+  versions: 
+    1:
+      config:
+        data_cells_range: "A9:G52"
+        columns_cells_range: "A6:G6"
+        dimension_cols_index: [0, 6]
+        dimension_cols_rename: ["libelle_fr", "libelle_ar"]

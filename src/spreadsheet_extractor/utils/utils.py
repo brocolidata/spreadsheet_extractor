@@ -1,9 +1,10 @@
-from spreadsheet_extractor.logger import logger
 import pathlib
 
 from omegaconf import OmegaConf, dictconfig
 
 from spreadsheet_extractor import settings
+from spreadsheet_extractor.logger import logger
+
 
 def get_config(
     config_name: str, 
@@ -31,5 +32,3 @@ def get_years_to_load(historic_years, years):
         }
         dc_years.update(dc)
     return dc_years
-
-

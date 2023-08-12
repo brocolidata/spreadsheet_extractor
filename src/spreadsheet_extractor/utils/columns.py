@@ -1,4 +1,3 @@
-
 # def dispatch_periodicity(data_range):
 #     periodicity = data_range.dataset.source.periodicity
 #     match periodicity:
@@ -7,7 +6,9 @@
             
 # def process_year_period(data_range):
 
-def get_cols_to_load(dataset, version_dict):
+def get_cols_to_load(
+        version_dict
+    ):
     period_ls = list(version_dict["files"].keys())
     period_ls.sort(reverse=True)
     col_period_mapping = {}

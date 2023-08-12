@@ -1,5 +1,6 @@
 from spreadsheet_extractor import get_config
 
+
 def test_get_source(
     source_config_name,
     source_config_path,
@@ -11,4 +12,3 @@ def test_get_source(
     )
 
     assert config.name == source_name
-

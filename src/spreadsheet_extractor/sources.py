@@ -1,8 +1,9 @@
 import pathlib
 
 from spreadsheet_extractor import datasets
-from spreadsheet_extractor.utils import spreadsheets as sheet_utils
 from spreadsheet_extractor.logger import logger
+from spreadsheet_extractor.utils import spreadsheets as sheet_utils
+
 
 class Source:
     """
@@ -19,7 +20,7 @@ class Source:
 
     def __init__(
         self, 
-        source_config,
+        source_config:,
         data_path: None | pathlib.Path = None,
     ):
         self._source_config = source_config

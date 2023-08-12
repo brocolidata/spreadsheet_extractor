@@ -44,26 +44,17 @@ It is possible to have multiple datasets in a worksheet.
 
 It allows to define logic on top of all the worksheets of the Source that have similar data.
 
-A Dataset can have multiple Versions.
+A Dataset can have multiple DataRange, each tied to one version.
 
 
-### Version
-A Version represent a particular version of a Dataset.
+### DataRange
+A DataRange represent a table/dataframe in a particular worksheet.
 
-A Version is not bind to one file/worksheet but rather multiple worksheets within all the files defined in the Source of the Dataset.
+A DataRange is bind to a worksheet in a particular file.
 
-It allows to define logic on top of all the worksheets that share similar configuration or data.
+A DataRange can be all data in the worksheet or a range within a worksheet.
 
-A Version can have multiple Tables.
-
-### Table
-A Table represent a table/dataframe in a particular worksheet.
-
-A Table is bind to a worksheet in a particular file.
-
-A Table can be all data in the worksheet or a range within a worksheet.
-
-It is possible to have multiple Tables in a worksheet.
+It is possible to have multiple DataRanges in a worksheet.
 
 It allows to define file-level logic.
 

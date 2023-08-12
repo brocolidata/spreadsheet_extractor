@@ -1,9 +1,10 @@
-from omegaconf import OmegaConf
 import pandas as pd
+from omegaconf import OmegaConf
 
-from spreadsheet_extractor.utils import dataframes as df_utils 
 from spreadsheet_extractor.logger import logger
+from spreadsheet_extractor.utils import dataframes as df_utils
 from spreadsheet_extractor.utils import spreadsheets as sheet_utils
+
 
 class DataRange():
     """
@@ -56,11 +57,9 @@ class DataRange():
         self._set_config()
         
 
-
     def extract(self):
         self.load_data_as_df()
         self.df = pd.concat([self.dimensions_df, self.prepared_df],  axis=1)        
-
 
     
     def get_worksheet(self):
@@ -73,18 +72,21 @@ class DataRange():
             self.config.columns_cells_range
         )
     
+
     def get_data_columns(self) -> list:
         return [
             col for i, col in enumerate(self.columns) \
             if i not in self.config.dimension_cols_index
         ]
     
+
     def get_dimensions_cols(self):
         return [self.columns[i] for i in self.config.dimension_cols_index]
     
     @property
     def cols_to_load(self):
         return self.dataset.versions[self.version]['cols'][self.period]
+
 
     def load_data_as_df(self):
         ws = self.worksheet
@@ -111,9 +113,9 @@ class DataRange():
         )  
         self.dimensions_df = self.dimensions_df or self.get_dimensions_df()
 
+
     def get_dimensions_df(self):
         return (
             self.raw_df
             [self.dimensions_cols]
         )
-

@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def merge_categories_and_elements(
     df: pd.DataFrame,
     dimension_cols: list
@@ -16,7 +17,9 @@ def merge_categories_and_elements(
         else:
             ls_produits.append(
                 {
-                    col:str(category.get(col)).strip() + " " + str(actual.get(col)).strip() for col in dimension_cols
+                    col:str(category.get(col)).strip()
+                    + " " 
+                    + str(actual.get(col)).strip() for col in dimension_cols
                 }
             )
 
@@ -50,7 +53,9 @@ def merge_multiline_labels(
         elif previous:
             ls_produits.append(
                 {
-                    col:str(previous.get(col)).strip() + "" + str(actual.get(col)).strip() for col in dimension_cols
+                    col:str(previous.get(col)).strip() 
+                    + "" 
+                    + str(actual.get(col)).strip() for col in dimension_cols
                 }
             )
             previous = {}
@@ -100,6 +105,7 @@ def save_df(df: pd.DataFrame, path):
         path,
         index = None
     )
+
 
 def replace_values_in_df(df, replace_regex=None):
     coma_df = (

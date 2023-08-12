@@ -6,13 +6,13 @@ def get_data_path() -> pathlib.Path:
     if path_str := os.getenv("DATA_PATH"):
         return pathlib.Path(path_str)
     else:
-        raise RuntimeError("'DATA_PATH' env var must be set or use the 'data_path' arg")
+        raise RuntimeError("Missing data path arg or env var")
 
 def get_config_path() -> pathlib.Path:
     if path_str := os.getenv("SPREADSHEET_EXTRACTOR_CONFIG_PATH"):
         return pathlib.Path(path_str)
     else:
-        raise RuntimeError("'SPREADSHEET_EXTRACTOR_CONFIG_PATH' env var must be set or use the 'config_path' arg")
+        raise RuntimeError("Missing config path arg or env var")
     
 
 EXTRACTS_FOLDER = 'extracts'

@@ -1,11 +1,9 @@
 import pathlib
-from omegaconf import OmegaConf
+
 import pandas as pd
+from omegaconf import OmegaConf
 
-from spreadsheet_extractor import (
-    data_ranges, settings
-)
-
+from spreadsheet_extractor import data_ranges, settings
 from spreadsheet_extractor.logger import logger
 from spreadsheet_extractor.utils import columns as column_utils
 from spreadsheet_extractor.utils import dataframes as df_utils
@@ -52,15 +50,20 @@ class Dataset:
             self._dataset_dict.get('config', {})
         )
     
+
     def process_data_ranges(self):
         for file_period, drange_dict in self._dataset_dict.data_ranges.items():
             data_range = data_ranges.DataRange(self, file_period, drange_dict)
             self.data_ranges.append(data_range)
-            version = drange_dict["version"]
-            if version in self.versions:
+            self.append_drange_to_versions(file_period, drange_dict)
+            
+
+    def append_drange_to_versions(self, file_period, drange_dict):
+        version = drange_dict["version"]
+        if version in self.versions:
                 self.versions[version]["files"].append(file_period)
-            else:
-                self.versions[version] = {"files" : [file_period]}
+        else:
+            self.versions[version] = {"files" : [file_period]}
 
 
     def process_versions(self):
@@ -73,6 +76,7 @@ class Dataset:
                 "config", {}
             )
 
+
     def process_configs(self):
         for data_range in self.data_ranges:
             version_config = OmegaConf.merge(
@@ -81,13 +85,14 @@ class Dataset:
             )
             data_range._add_version_config(version_config)
 
+
     def process_columns(self):
         for version_num, version_dict in self.versions.items():
             data_ranges = self.get_data_ranges_by_version(version_num)
             version_dict['files'] = {
                 dr.period:dr.get_data_columns() for dr in data_ranges
             }
-            version_dict["cols"] = column_utils.get_cols_to_load(self, version_dict)
+            version_dict["cols"] = column_utils.get_cols_to_load(version_dict)
 
 
     def get_data_ranges_by_version(self, version):

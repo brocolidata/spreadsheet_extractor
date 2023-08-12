@@ -11,16 +11,24 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-python.python",
-                "njpwerner.autodocstring",
-                "bungcip.better-toml"
-            ],
+				"ms-python.python",
+				"njpwerner.autodocstring",
+				"bungcip.better-toml",
+				"charliermarsh.ruff"
+			],
             "settings": {
+                "files.autoSave": "off",
                 "python.testing.pytestArgs": [
                     "tests"
                 ],
                 "python.testing.unittestEnabled": false,
-                "python.testing.pytestEnabled": true
+                "python.testing.pytestEnabled": true,
+                "[python]": {
+                    "editor.codeActionsOnSave": {
+                        "source.fixAll.ruff": true,
+                        "source.organizeImports.ruff": true
+                    }
+                }
             }
         }
     }

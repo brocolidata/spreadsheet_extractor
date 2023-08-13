@@ -8,6 +8,10 @@
     ],
     "workspaceMount": "source=${localWorkspaceFolder}/,target=/spreadsheet_extractor,type=bind",
     "workspaceFolder": "/spreadsheet_extractor/src",
+    "containerEnv": {
+        "DATA_PATH":"/spreadsheet_extractor/src/tests/assets",
+        "SPREADSHEET_EXTRACTOR_CONFIG_PATH":"/spreadsheet_extractor/src/tests/assets/sources"
+    },
     "customizations": {
         "vscode": {
             "extensions": [

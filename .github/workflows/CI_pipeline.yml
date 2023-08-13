@@ -12,6 +12,9 @@ jobs:
 
   run_tests:
     runs-on: ubuntu-latest
+    env:
+      DATA_PATH: "${{ github.workspace }}/src/tests/assets"
+      SPREADSHEET_EXTRACTOR_CONFIG_PATH: "${{ github.workspace }}/src/tests/assets/sources"
     steps:
       - name: 'Git Checkout'
         uses: actions/checkout@v2

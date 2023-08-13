@@ -2,6 +2,9 @@
 
 Write YAML to extract data from spreadsheet files
 
+## Installation
+TODO
+
 ## Usage
 
 ### Define source configuration

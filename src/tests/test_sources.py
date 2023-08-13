@@ -1,8 +1,8 @@
 from spreadsheet_extractor import Source
 
 
-def test_sources(data_path, source_name, source_config):
-    source = Source(source_config, data_path)
+def test_sources(source_name, source_config):
+    source = Source(source_config)
     assert source.name == source_name
 
 

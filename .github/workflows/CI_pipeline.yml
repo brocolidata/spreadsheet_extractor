@@ -12,9 +12,6 @@ jobs:
 
   run_tests:
     runs-on: ubuntu-latest
-    env:
-      DATA_PATH: "${{ github.workspace }}/src/tests/assets"
-      SPREADSHEET_EXTRACTOR_CONFIG_PATH: "${{ github.workspace }}/src/tests/assets/sources"
     steps:
       - name: 'Git Checkout'
         uses: actions/checkout@v2
@@ -36,7 +33,11 @@ jobs:
         id: run_tests
         if: steps.install_dependencies.outcome == 'success'
         working-directory: ${{ github.workspace }}/src/tests
-        run: poetry run --no-interaction pytest --junit-xml pytest_.xml
+        env:
+          DATA_PATH: "${{ github.workspace }}/src/tests/assets"
+          SPREADSHEET_EXTRACTOR_CONFIG_PATH: "${{ github.workspace }}/src/tests/assets/sources"
+        run: |
+          poetry run --no-interaction pytest --junit-xml pytest_.xml
       - name: 'Publish tests results'
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:

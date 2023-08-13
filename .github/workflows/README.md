@@ -10,8 +10,3 @@ It will run pytests tests defined in the `/tests` folder.
 
 This pipeline will run when you merge PRs on the `main` branch.
 It will deploy a GitHub Release for every new versions of the package.
-
-## [Deploy documentation](deploy_docs.yml) (TODO)
-
-This pipeline will run when you merge PRs on the `main` branch.
-It will deploy the documentation website to GitHub Pages.

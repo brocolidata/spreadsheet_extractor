@@ -1,5 +1,3 @@
-import os
-import pathlib
 
 import pytest
 
@@ -16,24 +14,12 @@ def source_name():
 
 
 @pytest.fixture
-def source_config_path():
-    # return pathlib.Path(os.getcwd(), 'assets', 'sources' )
-    return pathlib.Path(os.getcwd(),'tests', 'assets', 'sources' )
-
-
-@pytest.fixture
-def source_config(source_config_name, source_config_path):
+def source_config(source_config_name):
     return get_config(
-        source_config_name,
-        source_config_path
+        source_config_name
     )
 
 
 @pytest.fixture
-def data_path():
-    return pathlib.Path(os.getcwd(),'tests', 'assets')
-
-
-@pytest.fixture
-def source(source_config, data_path):
-    return Source(source_config, data_path)
+def source(source_config):
+    return Source(source_config)

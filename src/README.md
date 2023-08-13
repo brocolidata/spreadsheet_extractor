@@ -3,7 +3,13 @@
 Write YAML to extract data from spreadsheet files
 
 ## Installation
-TODO : Add install instructions.
+```
+pip install https://github.com/brocolidata/spreadsheet_extractor/releases/download/spreadsheet_extractor_v0.1.0/spreadsheet_extractor-0.1.0-py3-none-any.whl
+```
+or add this to your `requirements.txt`
+```
+https://github.com/brocolidata/spreadsheet_extractor/releases/download/spreadsheet_extractor_v0.1.0/spreadsheet_extractor-0.1.0-py3-none-any.whl
+```
 
 ## Usage
 

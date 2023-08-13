@@ -3,7 +3,7 @@
 Write YAML to extract data from spreadsheet files
 
 ## Installation
-TODO
+TODO : Add install instructions.
 
 ## Usage
 

@@ -19,10 +19,10 @@ See [Spreasheet Extractor configuration](/src/configuration.md)
 ### Run Spreadsheet Extractor
 
 #### CLI
+Run the following command that will interactively prompt you for all arguments
 ```bash
-spex source_config /path/to/source/config/folder /path/to/data/folder
+spex
 ```
-***Tip** : If you set the `DATA_PATH` & `SPREADSHEET_EXTRACTOR_CONFIG_PATH` environment variables, you will only have to provide the `source_config`*
 
 #### Python
 ```python

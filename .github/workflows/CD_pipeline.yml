@@ -13,7 +13,7 @@ on:
 jobs:
   
   build:
-    name: 'Release Spreadsheet Extractor'
+    name: 'Create Release'
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     defaults:
@@ -34,14 +34,15 @@ jobs:
           pip install poetry
           poetry install --no-interaction --no-root
       
-      - name: Build distribution
+      - name: 'Build distribution'
         id: build_distribution
         run: |
           poetry build --no-interaction
           echo "PACKAGE_VERSION=$(poetry version --no-interaction -s)" >> $GITHUB_ENV
           echo "PACKAGE_NAME=$(poetry version --no-interaction)" >> $GITHUB_ENV
       
-      - name: 'Create if: github.event.pull_request.merged == true release'
+      - name: 'Create Release'
+        if: github.event.pull_request.merged == true
         id: create_release
         uses: softprops/action-gh-release@v1
         with:

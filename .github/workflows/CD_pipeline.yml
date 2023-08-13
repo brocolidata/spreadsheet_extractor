@@ -8,6 +8,8 @@ on:
       - main
     paths:
       - 'src/**'
+      
+      
 jobs:
   
   build:
@@ -17,23 +19,28 @@ jobs:
     defaults:
       run:
         working-directory: ${{ github.workspace }}/src
+    
     steps:
       - name: 'Git Checkout'
         uses: actions/checkout@v2
+      
       - name: 'Setup Python'
         uses: actions/setup-python@v3
         with:
           python-version: '3.10'
+      
       - name: 'Install dependencies'
         run: |
           pip install poetry
           poetry install --no-interaction --no-root
+      
       - name: Build distribution
         id: build_distribution
         run: |
           poetry build --no-interaction
           echo "PACKAGE_VERSION=$(poetry version --no-interaction -s)" >> $GITHUB_ENV
           echo "PACKAGE_NAME=$(poetry version --no-interaction)" >> $GITHUB_ENV
+      
       - name: 'Create if: github.event.pull_request.merged == true release'
         id: create_release
         uses: softprops/action-gh-release@v1

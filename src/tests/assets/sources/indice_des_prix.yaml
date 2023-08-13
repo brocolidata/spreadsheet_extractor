@@ -16,12 +16,12 @@ datasets:
   config:
     sheet_name: "ipp"
     historic_periods: 3
-    type: index
-    base_year_cell: "A6"
+    # type: index
+    # base_year_cell: "A6"
     data_cells_range: "A9:E42"
     columns_cells_range: "A6:E6"
     dimension_cols_index: [0,4]
-    dimension_cols_rename: ["libelle_fr", "libelle_ar"]
+    # dimension_cols_rename: ["libelle_fr", "libelle_ar"]
     merge_strategy: merge_multiline_labels
   data_ranges:
     2019:
@@ -76,18 +76,18 @@ datasets:
     dimension_cols_index: [0, 1, 5, 6]
     dimension_cols_rename: ["libelle_fr", "unite_fr", "unite_ar", "libelle_ar"]
     merge_strategy: merge_categories_and_elements
-    replace_cells: {
+    replace_cells:
       2019: {
         "D120":8.1, 
         "E120":8.11
-      },
-      2021:{
+      }
+      2021: {
         "C80":4.35, 
         "C82":3.65, 
         "C102":21.18,
         "C104":32.61
-      },
-    }
+      }
+    
     replace_regex: {
       '\(\d*\)':''
     }

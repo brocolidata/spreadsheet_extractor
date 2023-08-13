@@ -20,7 +20,7 @@ class Source:
 
     def __init__(
         self, 
-        source_config:,
+        source_config,
         data_path: None | pathlib.Path = None,
     ):
         self._source_config = source_config

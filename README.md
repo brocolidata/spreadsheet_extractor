@@ -16,6 +16,8 @@ spex source_config /path/to/source/config/folder /path/to/data/folder
 
 #### Python
 ```python
+from spreadsheet_extractor import get_config, Source
+
 config = get_config(
     "source_config",
     "/path/to/source/config/folder"

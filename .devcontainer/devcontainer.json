@@ -8,6 +8,7 @@
     ],
     "workspaceMount": "source=${localWorkspaceFolder}/,target=/spreadsheet_extractor,type=bind",
     "workspaceFolder": "/spreadsheet_extractor/src",
+    "postStartCommand":"uv sync -q",
     "containerEnv": {
         "DATA_PATH":"/spreadsheet_extractor/src/tests/assets",
         "SPREADSHEET_EXTRACTOR_CONFIG_PATH":"/spreadsheet_extractor/src/tests/assets/sources"
@@ -28,10 +29,18 @@
                 "python.testing.unittestEnabled": false,
                 "python.testing.pytestEnabled": true,
                 "[python]": {
+                    "interpreter":"${workspaceFolder}/.venv/bin/python",
+                    "editor.formatOnSave": true,
                     "editor.codeActionsOnSave": {
-                        "source.fixAll.ruff": true,
-                        "source.organizeImports.ruff": true
-                    }
+                    "source.fixAll": "explicit",
+                    "source.organizeImports": "explicit"
+                    },
+                    "editor.defaultFormatter": "charliermarsh.ruff"
+                },
+                "notebook.formatOnSave.enabled": true,
+                "notebook.codeActionsOnSave": {
+                    "notebook.source.fixAll": "explicit",
+                    "notebook.source.organizeImports": "explicit"
                 }
             }
         }

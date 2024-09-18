@@ -22,24 +22,37 @@ jobs:
     
     steps:
       - name: 'Git Checkout'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       
       - name: 'Setup Python'
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
-      
-      - name: 'Install dependencies'
+          python-version: '3.12'
+
+      - name: Install OS dependencies'
         run: |
-          pip install poetry
-          poetry install --no-interaction --no-root
+          sudo apt-get -y update && sudo apt-get -y upgrade \
+          && sudo apt-get -y install \
+              software-properties-common \
+              libffi-dev \
+              libpq-dev\
+              gcc
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+
+      - name: 'Install dependencies'
+        id: install_dependencies
+        working-directory: ${{ github.workspace }}/src
+        run: |
+          uv sync
       
       - name: 'Build distribution'
         id: build_distribution
         run: |
-          poetry build --no-interaction
-          echo "PACKAGE_VERSION=$(poetry version --no-interaction -s)" >> $GITHUB_ENV
-          echo "PACKAGE_NAME=$(poetry version --no-interaction)" >> $GITHUB_ENV
+          uv build
+          echo "PACKAGE_VERSION=$(awk -F'\"' '/name =/ {print $2}' pyproject.toml)" >> $GITHUB_ENV
+          echo "PACKAGE_NAME=$(awk -F'\"' '/name =/ {print $2}' pyproject.toml)" >> $GITHUB_ENV
       
       - name: 'Create Release'
         if: github.event.pull_request.merged == true

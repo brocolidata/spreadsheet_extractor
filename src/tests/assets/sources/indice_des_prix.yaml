@@ -16,122 +16,90 @@ datasets:
   config:
     sheet_name: "ipp"
     historic_periods: 3
-    # type: index
     # base_year_cell: "A6"
     data_cells_range: "A9:E42"
-    columns_cells_range: "A6:E6"
-    dimension_cols_index: [0,4]
-    # dimension_cols_rename: ["libelle_fr", "libelle_ar"]
-    merge_strategy: merge_multiline_labels
   data_ranges:
     2019:
       version: 1
       config: 
+        columns: ["libelle_fr", "2018", "2017", "2016", "libelle_ar"]
         data_cells_range: "A9:E41"
     2020:
       version: 1
       config:
+        columns: ["libelle_fr", "2019", "2018", "2017", "libelle_ar"]
         data_cells_range: "A9:E41"
     2021:
       version: 2
       config:
-        dimension_cols_index: [0,3]
+        columns: ["libelle_fr", "2020", "2019", "libelle_ar"]
         historic_periods: 2
     2022:
-      version: 2   
+      version: 2
+      config:
+        columns: ["libelle_fr", "2021", "2020", "2019", "libelle_ar"]
 - name: "Indice des prix à la consommation : Milieu urbain"
   table_name: "ipc_national"
   config:
     sheet_name: "Nat "
     historic_periods: 3
-    type: index
-    base_year_cell: "A6"
+    # base_year_cell: "A6"
     data_cells_range: "A9:E67"
-    columns_cells_range: "A6:E6"
-    dimension_cols_index: [0,4]
-    dimension_cols_rename: ["libelle_fr", "libelle_ar"]
-    merge_strategy: merge_multiline_labels
   data_ranges:
     2019:
       version: 1
       config:
         data_cells_range: "A9:E65"
+        columns: ["libelle_fr", "2018", "2017", "2016", "libelle_ar"]
     2020:
       version: 2
       config:
         historic_periods: 2
-        dimension_cols_index: [0,3]
+        columns: ["libelle_fr", "2019", "2018", "libelle_ar"]
     2021:
       version: 2
+      config:
+        columns: ["libelle_fr", "2020", "2019", "2018", "libelle_ar"]
     2022: 
       version: 2
+      config:
+        columns: ["libelle_fr", "2021", "2020", "2019", "libelle_ar"]
 - name: "Prix moyens de détail observés pour certains produits dans la ville de Casablanca"
   table_name: "prix_produits_casablanca"
   config:
     sheet_name: "t 21"
     historic_periods: 3
-    type: index
     data_cells_range: "A9:G59,A74:G122,A138:G173"
-    columns_cells_range: "A7:G7"
-    dimension_cols_index: [0, 1, 5, 6]
-    dimension_cols_rename: ["libelle_fr", "unite_fr", "unite_ar", "libelle_ar"]
-    merge_strategy: merge_categories_and_elements
-    replace_cells:
-      2019: {
-        "D120":8.1, 
-        "E120":8.11
-      }
-      2021: {
-        "C80":4.35, 
-        "C82":3.65, 
-        "C102":21.18,
-        "C104":32.61
-      }
-    
-    replace_regex: {
-      '\(\d*\)':''
-    }
+    # replace_regex: {
+    #   '\(\d*\)':''
+    # }
   data_ranges:
     2019:
       version: 1
       config:
         sheet_name: " t20"
+        data_cells_range: "A9:G59,A74:G123,A139:G177"
+        columns: ["libelle_fr", "unite_fr", "2018", "2017", "2016", "unite_ar", "libelle_ar"]
+        replace_cells: {
+          "D120":8.1, 
+          "E120":8.11
+        }
     2020:
       version: 1
-    2021:
-      version: 2
-    2022:
-      version: 2
-  versions: 
-    1:
       config:
         data_cells_range: "A9:G59,A74:G123,A139:G177"
-- name: "Prix réglementés pour certains produits de tabac"
-  table_name: "prix_tabacs"
-  config:
-    sheet_name: "t 23"
-    historic_periods: 6
-    type: index
-    data_cells_range: "A10:H49"
-    columns_cells_range: "A6:H6"
-    dimension_cols_index: [0, 7]
-    dimension_cols_rename: ["libelle_fr", "libelle_ar"]
-    merge_strategy: merge_categories_and_elements
-  data_ranges:
-    2019:
-      version: 1
-      config:
-        sheet_name: " 22"
-    2020:
-      version: 1
+        columns: ["libelle_fr", "unite_fr", "2019", "2018", "2017", "unite_ar", "libelle_ar"]
     2021:
       version: 2
+      config:
+        columns: ["libelle_fr", "unite_fr", "2020", "2019", "2018", "unite_ar", "libelle_ar"]
+        replace_cells: {
+          "C80":4.35, 
+          "C82":3.65, 
+          "C102":21.18,
+          "C104":32.61
+        }
     2022:
       version: 2
-  versions: 
-    1:
       config:
-        data_cells_range: "A9:G52"
-        columns_cells_range: "A6:G6"
-        dimension_cols_index: [0, 6]
-        dimension_cols_rename: ["libelle_fr", "libelle_ar"]
+        columns: ["libelle_fr", "unite_fr", "2021", "2020", "2019", "unite_ar", "libelle_ar"]

@@ -17,8 +17,6 @@ RUN apt-get -y update && apt-get -y upgrade \
         gcc
 
 # Copy & Install the dependencies file
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
-RUN curl -sSL https://install.python-poetry.org | python3 -
 ENV PATH "${PATH}:~/.local/bin"

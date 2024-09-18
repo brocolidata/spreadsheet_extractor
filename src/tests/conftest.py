@@ -1,3 +1,4 @@
+import os
 import pathlib
 
 import pandas as pd
@@ -29,8 +30,10 @@ def source(source_config):
 
 @pytest.fixture
 def ipp_fixture():
+    data_path_str = os.getenv("DATA_PATH", "/spreadsheet_extractor/src/tests/assets")
+    data_path = pathlib.Path(data_path_str)
     file_path = pathlib.Path(
-        "/spreadsheet_extractor/src/tests/assets", "fixtures", "ipp.parquet"
+        data_path, "fixtures", "ipp.parquet"
     )
     # fmt: off
     df = (

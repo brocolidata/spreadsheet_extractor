@@ -21,7 +21,7 @@ jobs:
           python-version: '3.12'
       - name: Install OS dependencies'
         run: |
-          RUN apt-get -y update && apt-get -y upgrade \
+          apt-get -y update && apt-get -y upgrade \
           && apt-get -y install \
               software-properties-common \
               libffi-dev \

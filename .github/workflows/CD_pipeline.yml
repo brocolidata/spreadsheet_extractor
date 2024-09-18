@@ -31,8 +31,8 @@ jobs:
 
       - name: Install OS dependencies'
         run: |
-          apt-get -y update && apt-get -y upgrade \
-          && apt-get -y install \
+          sudo apt-get -y update && sudo apt-get -y upgrade \
+          && sudo apt-get -y install \
               software-properties-common \
               libffi-dev \
               libpq-dev\

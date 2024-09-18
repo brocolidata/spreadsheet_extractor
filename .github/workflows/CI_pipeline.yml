@@ -14,21 +14,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Git Checkout'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: 'Setup Python'
         uses: actions/setup-python@v3
         with:
           python-version: '3.10'
-      - name: 'Install test dependencies'
-        run: |
-          pip install pytest poetry
-          pip list
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
       - name: 'Install dependencies'
         id: install_dependencies
         working-directory: ${{ github.workspace }}/src
         run: |
-          poetry install --no-interaction --no-root
-          poetry show --no-interaction
+          uv sync
       - name: 'Run tests'
         id: run_tests
         if: steps.install_dependencies.outcome == 'success'
@@ -37,7 +34,7 @@ jobs:
           DATA_PATH: "${{ github.workspace }}/src/tests/assets"
           SPREADSHEET_EXTRACTOR_CONFIG_PATH: "${{ github.workspace }}/src/tests/assets/sources"
         run: |
-          poetry run --no-interaction pytest --junit-xml pytest_.xml
+          uv run --no-interaction pytest --junit-xml pytest_.xml
       - name: 'Publish tests results'
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:

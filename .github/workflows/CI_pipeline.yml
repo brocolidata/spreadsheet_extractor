@@ -42,7 +42,7 @@ jobs:
           DATA_PATH: "${{ github.workspace }}/src/tests/assets"
           SPREADSHEET_EXTRACTOR_CONFIG_PATH: "${{ github.workspace }}/src/tests/assets/sources"
         run: |
-          uv run --no-interaction pytest --junit-xml pytest_.xml
+          uv run pytest --junit-xml pytest_.xml
       - name: 'Publish tests results'
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:

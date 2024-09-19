@@ -1,6 +1,6 @@
 [project]
 name = "spreadsheet-extractor"
-version = "0.1.0"
+version = "0.2.0"
 description = "Write YAML to extract data from spreadsheet files"
 readme = "README.md"
 requires-python = ">=3.12"

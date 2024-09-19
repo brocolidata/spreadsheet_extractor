@@ -51,7 +51,7 @@ jobs:
         id: build_distribution
         run: |
           uv build
-          echo "PACKAGE_VERSION=$(awk -F'\"' '/name =/ {print $2}' pyproject.toml)" >> $GITHUB_ENV
+          echo "PACKAGE_VERSION=$(awk -F'\"' '/version =/ {print $2}' pyproject.toml)" >> $GITHUB_ENV
           echo "PACKAGE_NAME=$(awk -F'\"' '/name =/ {print $2}' pyproject.toml)" >> $GITHUB_ENV
       
       - name: 'Create Release'

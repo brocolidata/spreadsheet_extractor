@@ -18,12 +18,6 @@ See [Spreasheet Extractor configuration](/src/configuration.md)
 
 ### Run Spreadsheet Extractor
 
-#### CLI
-Run the following command that will interactively prompt you for all arguments
-```bash
-spex
-```
-
 #### Python
 ```python
 from spreadsheet_extractor import get_config, Source
